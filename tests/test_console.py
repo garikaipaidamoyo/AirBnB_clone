@@ -62,9 +62,9 @@ class TestHBNBCommand_create(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_create_invalid_syntax(self):
-        correct = "** Uknown syntax: MyModel.create()"
+        correct = "** Uknown syntax: my_model.create()"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.create()"))
+            self.assertFalse(HBNBCommand().onecmd("my_model.create()"))
             self.assertEqual(correct, output.getvalue().strip())
         correct = "** Uknown syntax: BaseModel.create()"
         with patch("sys.out", new=StringIO()) as output:
@@ -155,10 +155,10 @@ class TestHBNBCommand_show(unittest.TestCase):
     def test_show_invalid_class(self):
         correct = "** class doesnot exist **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("show MyModel"))
+            self.assertFalse(HBNBCommand().onecmd("show my_model"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.show()"))
+            self.assertFalse(HBNBCommand().onecmd("my_model.show()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_show_missing_id_space_notation(self):
@@ -283,10 +283,10 @@ class TestHBNBCommand_all(unittest.TestCase):
     def test_all_invalid_class(self):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("all MyModel"))
+            self.assertFalse(HBNBCommand().onecmd("all my_model"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.all()"))
+            self.assertFalse(HBNBCommand().onecmd("my_model.all()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_all_objects_space_notation(self):
@@ -500,7 +500,7 @@ class TestHBNBCommand_count(unittest.TestCase):
 
     def test_count_invalid_class(self):
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
+            self.assertFalse(HBNBCommand().onecmd("my_model.count()"))
             self.assertEqual("0", output.getvalue().strip())
 
     def test_count_object(self):
@@ -575,10 +575,10 @@ class TestHBNBCommand_update(unittest.TestCase):
     def test_update_invalid_class(self):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("update MyModel"))
+            self.assertFalse(HBNBCommand().onecmd("update my_model"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.update()"))
+            self.assertFalse(HBNBCommand().onecmd("my_model.update()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_missing_id_space_notation(self):
@@ -1208,10 +1208,10 @@ class TestHBNBCommand_destroy(unittest.TestCase):
     def test_destroy_invalid_class(self):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("destroy MyModel"))
+            self.assertFalse(HBNBCommand().onecmd("destroy my_model"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.destroy()"))
+            self.assertFalse(HBNBCommand().onecmd("my_model.destroy()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_destroy_id_missing_space_notation(self):
