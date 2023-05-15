@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from models.engine import file_storage
 
+
 class BaseModel:
     """ Class that defines all common attributes for other classes"""
 
@@ -32,7 +33,9 @@ class BaseModel:
 
     def __str__(self):
         """ Returns official string format """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+
+        return "[{}] ({}) {}".\
+            format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         """Updates the public instance attribute updated_at"""
