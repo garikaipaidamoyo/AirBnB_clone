@@ -435,7 +435,7 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_destroy(self):
-        h = ("Usage: destroy <class> <id> or <class>.destroy(<id>)\n           "
+        h = ("Usage: destroy <class> <id> or <class>.destroy(<id>)\n    "
              "Delete a class instance of a given id.")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help destroy"))
@@ -443,7 +443,8 @@ class TestHBNBCommand_help(unittest.TestCase):
 
     def test_help_all(self):
         h = ("Usage: all or all <class> or <class>.all()\n          "
-             "Display the string representation of all instances of given class"
+             "Display the string representation of all instances of\
+                     given class"
              ".\n       if no class is specified, display all instantiated "
              "objects.")
         with patch("sys.stdout", new=StringIO()) as output:
@@ -458,10 +459,11 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_update(self):
-        h = ("Usage: update <class> <id><attribute_name> <attribute_value> or"
-          "\n        <class>.update(<id>, <attibute_name>, <attribute_value"
+        h = ("Usage: update <class> <id><attribute_name>\
+                <attribute_value> or"
+             "\n     <class>.update(<id>, <attibute_name>, <attribute_value"
              ">) or\n   <class>.update(<id>, <dictionary>)\n    "
-             "Update a class instance of a given id by adding or updating\n     "
+             "Update a class instance of a given id by adding or updating\n"
              "  a given attribute key/value pair of dictionary.")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help update"))
@@ -554,7 +556,7 @@ class TestHBNBCommand_update(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-       try:
+        try:
             os.remove("file.json")
         except IOError:
             pass
@@ -1202,7 +1204,7 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("destroy"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-           self.assertFalse(HBNBCommand().onecmd(".destroy()"))
+            self.assertFalse(HBNBCommand().onecmd(".destroy()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_destroy_invalid_class(self):
@@ -1437,6 +1439,7 @@ class TestHBNBCommand_exit(unittest.TestCase):
     def test_EOF_exists(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("EOF"))
+
 
 if __name__ == "__main__":
     unittest.main()

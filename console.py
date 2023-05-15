@@ -7,6 +7,7 @@ from models.engine import file_storage
 import re
 import json
 
+
 class HBNBCommand(cmd.Cmd):
     """ Class for the command interpreter """
 
@@ -40,7 +41,8 @@ class HBNBCommand(cmd.Cmd):
             if match_for_dict:
                 self.update_dict(className, uid, match_for_dict.group(1))
                 return ""
-            match_for_attr_and_value = re.search('^(?:"([^"]*)")?(?:, (.*))?$', attr_or_dict)
+            match_for_attr_and_value = re.search('^(?:"([^"]*)")?(?:, (.*))?$\
+                    ', attr_or_dict)
             if match_for_attr_and_value:
                 attr_and_value = (match_for_attr_and_value.group(1) or "") +\
                     " " + (match_for_attr_and_value.group(2) or "")
