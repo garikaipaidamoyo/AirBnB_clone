@@ -66,7 +66,7 @@ class TestCitySave(unittest.TestCase):
     def setUp(self):
         try:
             os.rename("file.json", "tmp")
-        excpet IOError:
+        except IOError:
             pass
 
     def tearDown(self):
@@ -76,7 +76,7 @@ class TestCitySave(unittest.TestCase):
             pass
         try:
             os.rename("tmp", "file.json")
-        excpet IOError:
+        except IOError:
             pass
 
     def test_save_one(self):
