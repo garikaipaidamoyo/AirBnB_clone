@@ -7,6 +7,7 @@ Unittest classes:
     TestFileStorage_methods
 """
 
+
 import os
 import json
 import models
@@ -20,6 +21,7 @@ from models.place import Place
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+
 
 class TestFileStorage instantiation(unittest.TestCase):
     """ Unittests for testing instantiation of the FileStorage class."""
@@ -40,7 +42,9 @@ class TestFileStorage instantiation(unittest.TestCase):
     def test_file_storage_initializes(self):
         self.assertEqual(type(models.file_storage), Filestorage)
 
+
 class TestFileStorage_methods(unittest.TestCase):
+
     """Unittests for testing methods pf the FileStorage class"""
 
     @classmethod
