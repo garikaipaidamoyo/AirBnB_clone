@@ -2,8 +2,13 @@
 """ Module for the entry point of thr command interpreter """
 
 import cmd
+<<<<<<< HEAD
 from models import storage
 from models.engine import storage
+=======
+from models.base_model import BaseModel
+from models import storage
+>>>>>>> test_branch
 import re
 import json
 
@@ -24,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if not match:
             return line
-        className = match.group(1)
+        classname = match.group(1)
         method = match.group(2)
         args = match.group(3)
         match_for_uid_and_args = re.search('^"([^"]*)"(?:, (.*))?$', args)
@@ -39,33 +44,45 @@ class HBNBCommand(cmd.Cmd):
         if method == "update" and attr_or_dict:
             match_for_dict = re.search('^{.*})$', attr_or_dict)
             if match_for_dict:
-                self.update_dict(className, uid, match_for_dict.group(1))
+                self.update_dict(classname, uid, match_for_dict.group(1))
                 return ""
             match_for_attr_and_value = re.search('^(?:"([^"]*)")?(?:, (.*))?$\
                     ', attr_or_dict)
             if match_for_attr_and_value:
                 attr_and_value = (match_for_attr_and_value.group(1) or "") +\
                     " " + (match_for_attr_and_value.group(2) or "")
-        command = method + " " + className + " " + uid + " " + attr_and_value
+        command = method + " " + classname + " " + uid + " " + attr_and_value
         self.onecmd(command)
         return command
 
-    def update_dict(self, className, uid, s_dict):
+    def update_dict(self, classname, uid, s_dict):
         """ Helper method for update func with a dictionary."""
         s = s_dict.replace("'", '"')
         d = json.loads(s)
-        if not className:
+        if not classname:
             print("** class name missing **")
+<<<<<<< HEAD
         elif className not in storage.classes():
+=======
+        elif classname not in storage.classes():
+>>>>>>> test_branch
             print("** class does not exist **")
         elif uid is None:
             print("** instance id missing **")
         else:
+<<<<<<< HEAD
             key = "{}.{}".format(className, uid)
             if key not in Storage.all():
                 print("** no instance found **")
             else:
                 attributes = _storage.attribites()[className]
+=======
+            key = "{}.{}".format(classname, uid)
+            if key not in storage.all():
+                print("** no instance found **")
+            else:
+                attributes = storage.attribites()[className]
+>>>>>>> test_branch
                 for attributes, value in d.items():
                     if attribute in attributes:
                         value = attributes[attribute](value)
