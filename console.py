@@ -2,13 +2,10 @@
 """ Module for the entry point of thr command interpreter """
 
 import cmd
-<<<<<<< HEAD
 from models import storage
-from models.engine import storage
-=======
+from models.engine import file_storage
 from models.base_model import BaseModel
 from models import storage
->>>>>>> test_branch
 import re
 import json
 
@@ -61,28 +58,21 @@ class HBNBCommand(cmd.Cmd):
         d = json.loads(s)
         if not classname:
             print("** class name missing **")
-<<<<<<< HEAD
-        elif className not in storage.classes():
-=======
         elif classname not in storage.classes():
->>>>>>> test_branch
             print("** class does not exist **")
         elif uid is None:
             print("** instance id missing **")
         else:
-<<<<<<< HEAD
             key = "{}.{}".format(className, uid)
-            if key not in Storage.all():
+            if key not in storage.all():
                 print("** no instance found **")
             else:
-                attributes = _storage.attribites()[className]
-=======
+                attributes = storage.attribites()[className]
             key = "{}.{}".format(classname, uid)
             if key not in storage.all():
                 print("** no instance found **")
             else:
                 attributes = storage.attribites()[className]
->>>>>>> test_branch
                 for attributes, value in d.items():
                     if attribute in attributes:
                         value = attributes[attribute](value)
