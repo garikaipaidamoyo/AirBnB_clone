@@ -13,17 +13,17 @@ class FileStorage:
 
     def all(self):
         """Returns the __objects dictionary"""
-        return file_storage.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """Sets __objects in the obj eith key <obj class name>.id"""
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        file_storage.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """ Serializes __objects to json file"""
-        with open(file_storage.__file_path, "w", encoding="utf-8") as f:
-            d = {k: v.to_dict() for k, v in file_storage.__objects.items()}
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
+            d = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
             json.dump(d, f)
 
     def classes(self):
@@ -47,14 +47,14 @@ class FileStorage:
 
     def reload(self):
         """ Reloads the stored objects"""
-        if not os.path.isfile(file_storage.__file_path):
+        if not os.path.isfile(FileStorage.__file_path):
             return
         with open(file_storage.__file_path, "r", encoding="utf-8") as f:
             obj_dict = json.load(f)
             obj_dict = {k: self.classes()[v["__class__"]](**v)
                         for k, v in obj_dict.items()}
-            file_storage.__objects.update(obj_dict)
-            file_storage.__objects = obj_dict
+            FileStorage.__objects.update(obj_dict)
+            FileStorage.__objects = obj_dict
 
     def attributes(self):
         """Returns the attributes for classname"""
